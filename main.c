@@ -39,6 +39,8 @@ int main() {
             printf("Error: Unknown command\n\n");
         }
     }
+    
+    destroy_stack(stack);
 
     return 0;
 }
