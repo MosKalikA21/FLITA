@@ -42,5 +42,4 @@ int main() {
     
     destroy_stack(stack);
 
-    return 0;
-}
+    return 0;}
