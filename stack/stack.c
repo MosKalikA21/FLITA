@@ -4,10 +4,10 @@
 #include <assert.h>
 #include "stack.h"
 
-size_t STACK_DEFAULT_CAPACITY = 8;  // Вместимость стека по-умолчанию
-size_t STACK_EXPANDING_K = 2;  // Стратегия увеличения вместимости (коэффициент)
+size_t STACK_DEFAULT_CAPACITY = 8;  // вместимость стека по-умолчанию
+size_t STACK_EXPANDING_K = 2;  // стратегия увеличения вместимости (коэффициент)
 
-// Увеличить вместимость стека (объявляем в этом файле, чтобы сделать функцию приватной)
+// увеличить вместимость стека (объявляем в этом файле, чтобы сделать функцию приватной)
 void expand_stack(Stack* stack);
 
 Stack* create_stack() {
@@ -15,13 +15,13 @@ Stack* create_stack() {
 }
 
 Stack* create_stack_with_capacity(size_t capacity) {
-    // Выделяем память под структуру стека
+    // выделяем память под структуру стека
     Stack* stack = (Stack*) malloc(sizeof(Stack));
     if (!stack) {
         return NULL;
     }
 
-    // Выделяем память под буфер стека
+    // выделяем память под буфер стека
     stack->buffer = (StackValue*) malloc(capacity * sizeof(StackValue));
     if (!stack->buffer) {
         destroy_stack(stack);
@@ -58,12 +58,12 @@ void push_stack(Stack* stack, StackValue value) {
         return;
     }
 
-    // Если стек заполнен полностью, увеличиваем его вместимость
+    // если стек заполнен полностью,то увеличиваем его вместимость
     if (is_full_stack(stack)) {
         expand_stack(stack);
     }
 
-    // Кладем элемент в буфер
+    // кладем элемент в буфер
     stack->buffer[stack->size++] = value;
 }
 
@@ -96,17 +96,17 @@ void expand_stack(Stack* stack) {
     }
 
     size_t new_capacity = stack->capacity * STACK_EXPANDING_K;
-    // Выделяем память под новый буфер большего размера
+    // выделяем память под новый буфер большего размера
     StackValue* new_buffer = (StackValue*) malloc(new_capacity);
     if (!new_buffer) {
         return;
     }
 
-    // Копируем содержимое старого буфера в новый, после чего освобождаем старый
+    // копируем содержимое старого буфера в новый, после чего освобождаем старый
     memcpy(new_buffer, stack->buffer, stack->size * sizeof(StackValue));
     free(stack->buffer);
 
-    // Сохраняем новый буфер и новое значение вместимости
+    // сохраняем новый буфер и новое значение вместимости
     stack->buffer = new_buffer;
     stack->capacity = new_capacity;
 }
