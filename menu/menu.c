@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <stdio.h>
-#include <menu.h>
+#include "menu.h"
 
 void menu_push_stack(Stack* stack) {
     assert(stack);
