@@ -1,6 +1,5 @@
 #ifndef STACK_MENU_H
 #define STACK_MENU_H
-
 #include "stack/stack.h"
 
 void menu_push_stack(Stack* stack);
